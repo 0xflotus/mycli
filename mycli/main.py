@@ -389,11 +389,12 @@ class MyCli(object):
         # Socket interface not supported for SSH connections
         if port or host or ssh_host or ssh_port:
             socket = ''
+            host = host or cnf['host']
+            port = port or cnf['port']
         else:
             socket = socket or cnf['socket'] or guess_socket_location()
         user = user or cnf['user'] or os.getenv('USER')
-        host = host or cnf['host']
-        port = port or cnf['port']
+
         ssl = ssl or {}
 
         passwd = passwd if isinstance(passwd, str) else cnf['password']
